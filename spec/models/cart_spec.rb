@@ -35,13 +35,7 @@ RSpec.describe Cart, type: :model do
     expect(cart.items.first.product).to be_a Product #第一个item拿出来的东西应该是一件商品
   end
 
-  it "每个CartItem都可以计算自己的金额(小计)" do
 
-  end
-
-  it "可以计算整台购物车的总消费金额" do
-
-  end
 
   it "特别活动可能可搭配优惠活动(例如新年全场九折，或是满金额免运费)" do
 

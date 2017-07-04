@@ -19,11 +19,20 @@ RSpec.describe Cart, type: :model do
 
     expect(cart.items.length).to be 3 #总共会有3个item
     expect(cart.items.first.quantity).to be 3 #第一个items的数量应该会是3
-    expect(cart.items.second.quantity).to be 5 #第二个items的数量应该会是5    
+    expect(cart.items.second.quantity).to be 5 #第二个items的数量应该会是5
   end
 
   it "商品可以放到购物车里，也可以再拿出来" do
+    cart = Cart.new
+    p1 = Product.create(title:"iphone")
+    p2 = Product.create(title:"ipod")
 
+    4.times { cart.add_item(p1.id)}
+    2.times { cart.add_item(p2.id)}
+
+    expect(cart.items.first.product_id).to be p1.id #第一个item的商品ID应该等于p1的ID
+    expect(cart.items.second.product_id).to be p2.id #第二个item的商品ID应该等于p2的ID
+    expect(cart.items.first.product).to be_a Product #第一个item拿出来的东西应该是一件商品
   end
 
   it "每个CartItem都可以计算自己的金额(小计)" do

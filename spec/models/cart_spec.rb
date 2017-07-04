@@ -35,6 +35,19 @@ RSpec.describe Cart, type: :model do
     expect(cart.items.first.product).to be_a Product #第一个item拿出来的东西应该是一件商品
   end
 
+  it "可以计算整台购物车的总消费金额" do
+    cart = Cart.new
+    p1 = Product.create(title: "iphone", price: 7400)
+    p2 = Product.create(title: "ipod", price: 3400)
+
+    3.times {
+      cart.add_item(p1.id)
+      cart.add_item(p2.id)
+    }
+
+    expect(cart.total_price).to be 32400
+  end
+
 
 
   it "特别活动可能可搭配优惠活动(例如新年全场九折，或是满金额免运费)" do

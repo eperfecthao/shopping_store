@@ -12,7 +12,14 @@ RSpec.describe Cart, type: :model do
 
 
   it "如果加了相同种类的商品到购物车里，购买项目(CartItem)并不会增加，但商品的数量会改变" do
+    cart = Cart.new #新增一台购物车
+    3.times { cart.add_item(1)} #加了3次的1
+    5.times { cart.add_item(2)} #加了5次的2
+    2.times { cart.add_item(3)} #加了2次的3
 
+    expect(cart.items.length).to be 3 #总共会有3个item
+    expect(cart.items.first.quantity).to be 3 #第一个items的数量应该会是3
+    expect(cart.items.second.quantity).to be 5 #第二个items的数量应该会是5    
   end
 
   it "商品可以放到购物车里，也可以再拿出来" do
